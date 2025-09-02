@@ -18,7 +18,7 @@ import { Roles } from 'src/common/decorators/roles.decorator';
 
 @Controller('products')
 export class ProductsController {
-  constructor(private productsService: ProductsService) {}
+  constructor(private readonly productsService: ProductsService) {}
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)

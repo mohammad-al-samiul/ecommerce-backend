@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { ProductsModule } from './products/products.module';
+import { Product } from './products/entities/product.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -18,7 +19,7 @@ import { ProductsModule } from './products/products.module';
         username: process.env.DB_USER,
         password: process.env.DB_PASS,
         database: process.env.DB_NAME,
-        entities: [User],
+        entities: [User, Product],
         synchronize: true,
         // migrations: ['dist/migrations/*.js'],
         // migrationsRun: true,
