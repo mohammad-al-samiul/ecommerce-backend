@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 
 import { RegisterDto } from './dto/register.dto';
@@ -14,22 +15,31 @@ export class AuthService {
     @InjectRepository(User) private usersRepo: Repository<User>,
     private jwtService: JwtService,
   ) {}
-  async registerUser(paylad: RegisterDto) {
-    const { email, password, username, role = 'user' } = paylad;
+
+  async registerUser(payload: RegisterDto) {
+    const { email, password, username, role = 'user' } = payload;
+
     const existUser = await this.usersRepo.findOne({ where: { email } });
     if (existUser) {
-      throw new UnauthorizedException('Email is already exist');
+      throw new UnauthorizedException('Email already exists');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const userInfo = {
+    // Create a new User entity instance
+    const user = this.usersRepo.create({
       username,
       email,
       password: hashedPassword,
       role: role as Role,
-    };
-    return this.usersRepo.save(userInfo);
+    });
+
+    const savedUser = await this.usersRepo.save(user);
+
+    // Exclude password from the response
+    const { password: _, ...userWithoutPassword } = savedUser;
+
+    return userWithoutPassword;
   }
 
   async loginUser(paylad: LoginDto) {
