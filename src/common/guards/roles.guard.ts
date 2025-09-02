@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import {
   Injectable,
   CanActivate,
@@ -30,8 +31,8 @@ export class RolesGuard implements CanActivate {
         'You are not logged in. Please log in first.',
       );
     }
+
     if (!requiredRoles.includes(user.role)) {
-      // user role not allowed
       throw new ForbiddenException(
         'Your role is not allowed to perform this action.',
       );

@@ -42,8 +42,8 @@ export class AuthService {
     return userWithoutPassword;
   }
 
-  async loginUser(paylad: LoginDto) {
-    const { email, password } = paylad;
+  async loginUser(payload: LoginDto) {
+    const { email, password } = payload;
     const existUser = await this.usersRepo.findOne({ where: { email } });
     if (!existUser) {
       throw new UnauthorizedException('Invalid Credentials');

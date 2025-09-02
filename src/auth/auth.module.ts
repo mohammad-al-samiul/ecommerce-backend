@@ -5,8 +5,10 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/user.entity';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     //JwtModule is told to sign and verify tokens using this secret. Later, we can inject JwtService to generate or verify tokens.
     JwtModule.register({
       secret: process.env.JWT_SECRET,
