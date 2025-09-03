@@ -120,6 +120,7 @@ DELETE /api/carts – Clear all items from cart
 
 ### Folder Structure
 
+```bash
 src/
 ├─ auth/
 ├─ carts/
@@ -154,6 +155,8 @@ src/
 ├─ app.module.ts
 ├─ app.service.ts
 └─ main.ts
+
+```
 
 ```
 
