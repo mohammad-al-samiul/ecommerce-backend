@@ -45,7 +45,7 @@ export class CartsService {
     return { message: 'Product added in cart successfully' };
   }
 
-  async list(userId: number) {
+  async getAllCartItem(userId: number) {
     return await this.cartRepo.find({ where: { user: { id: userId } } });
   }
 
