@@ -41,7 +41,7 @@ export class ProductsController {
   @Roles(Role.Admin)
   @Patch(':id')
   updateProduct(
-    @Body() productDto: ProductDto,
+    @Body() productDto: Partial<ProductDto>,
     @Param('id', ParseIntPipe) id: number,
   ) {
     return this.productsService.updateProduct(id, productDto);
