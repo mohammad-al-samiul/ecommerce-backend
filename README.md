@@ -81,20 +81,21 @@ Start the server
 
 # Development mode with hot reload
 
-````bash
-npm run start:dev
 ```bash
+npm run start:dev
+
 
 ### API Endpoints
 
 # Auth
-``` bash
+
 POST /api/auth/register – Register a new user
 
 POST /api/auth/login – Login user and get JWT token
 ```
+
 # Products
-``` bash
+
 GET /api/products – Get all products
 
 GET /api/products/:id – Get a single product
@@ -104,9 +105,9 @@ POST /api/products – Create a new product (Admin only)
 PATCH /api/products/:id – Update a product (Admin only)
 
 DELETE /api/products/:id – Delete a product (Admin only)
-```
+
 # Carts
-``` bash
+
 POST /api/carts/add – Add a product to cart (Auth required)
 
 GET /api/carts – Get all cart items for the user
@@ -116,9 +117,9 @@ PATCH /api/carts/:id – Update quantity of a cart item
 DELETE /api/carts/:id – Remove a single cart item
 
 DELETE /api/carts – Clear all items from cart
-```
+
 ### Folder Structure
-```bash
+
 src/
 ├─ auth/
 ├─ carts/
@@ -153,4 +154,7 @@ src/
 ├─ app.module.ts
 ├─ app.service.ts
 └─ main.ts
-````
+
+```
+
+```
