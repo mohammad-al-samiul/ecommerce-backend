@@ -23,6 +23,7 @@ export class CartsService {
     if (!product) {
       throw new NotFoundException('Product not found!');
     }
+
     if (product.stock < quantity) {
       throw new BadRequestException('Insufficient Stock');
     }
