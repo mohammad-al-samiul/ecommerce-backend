@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { ProductsModule } from './products/products.module';
 import { Product } from './products/entities/product.entity';
+import { CartsModule } from './carts/carts.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -28,6 +29,7 @@ import { Product } from './products/entities/product.entity';
     AuthModule,
     UsersModule,
     ProductsModule,
+    CartsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
