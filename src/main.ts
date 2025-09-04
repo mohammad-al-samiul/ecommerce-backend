@@ -1,23 +1,34 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import * as dotenv from 'dotenv';
 import { ValidationPipe } from '@nestjs/common';
-dotenv.config();
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
-  app.setGlobalPrefix('api');
+let cachedServer: any;
 
-  if (process.env.NODE_ENV !== 'production') {
-    // In local development, listen on a specific port
+export default async function handler(req: any, res: any) {
+  if (!cachedServer) {
+    const app = await NestFactory.create(AppModule);
+    app.useGlobalPipes(
+      new ValidationPipe({ whitelist: true, transform: true }),
+    );
+    app.setGlobalPrefix('api');
+    await app.init();
+    cachedServer = app.getHttpAdapter().getInstance();
+  }
+  return cachedServer(req, res);
+}
+
+// Local dev এর জন্য
+if (process.env.NODE_ENV !== 'production') {
+  async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
+    app.useGlobalPipes(
+      new ValidationPipe({ whitelist: true, transform: true }),
+    );
+    app.setGlobalPrefix('api');
     const port = process.env.PORT || 3000;
     await app.listen(port);
     console.log(`🚀 Server running at http://localhost:${port}`);
-  } else {
-    //In production (serverless platforms like Vercel), only initialize the app
-    await app.init();
   }
+  bootstrap();
 }
-bootstrap();
