@@ -9,12 +9,12 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { RegisterDto } from 'src/auth/dto/register.dto';
-import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/common/guards/roles.guard';
+import { RegisterDto } from '../auth/dto/register.dto';
+import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
+import { RolesGuard } from '../common/guards/roles.guard';
 
-import { Role } from 'src/common/enums/roles.enum';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { Role } from '../common/enums/roles.enum';
+import { Roles } from '../common/decorators/roles.decorator';
 
 @Controller('users')
 export class UsersController {
