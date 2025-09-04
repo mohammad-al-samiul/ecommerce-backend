@@ -10,8 +10,14 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.setGlobalPrefix('api');
 
-  const port = process.env.PORT || 5000;
-  await app.listen(port);
-  console.log(`🚀 Server running on port ${port}`);
+  if (process.env.NODE_ENV !== 'production') {
+    // In local development, listen on a specific port
+    const port = process.env.PORT || 3000;
+    await app.listen(port);
+    console.log(`🚀 Server running at http://localhost:${port}`);
+  } else {
+    //In production (serverless platforms like Vercel), only initialize the app
+    await app.init();
+  }
 }
 bootstrap();

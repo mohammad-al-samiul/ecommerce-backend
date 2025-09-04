@@ -121,40 +121,55 @@ DELETE /api/carts – Clear all items from cart
 ### Folder Structure
 
 ```bash
-src/
-├─ auth/
-├─ carts/
-│ ├─ dto/
-│ ├─ entiies/
-│ │ └─ carts.controller.spec.ts
-│ ├─ carts.controller.ts
-│ ├─ carts.module.ts
-│ ├─ carts.service.spec.ts
-│ └─ carts.service.ts
-├─ common/
-│ ├─ decorators/
-│ ├─ enums/
-│ └─ guards/
-├─ products/
-│ ├─ dto/
-│ ├─ entities/
-│ │ └─ products.controller.spec.ts
-│ ├─ products.controller.ts
-│ ├─ products.module.ts
-│ ├─ products.service.spec.ts
-│ └─ products.service.ts
-├─ users/
-│ ├─ entities/
-│ │ └─ users.controller.spec.ts
-│ ├─ users.controller.ts
-│ ├─ users.module.ts
-│ ├─ users.service.spec.ts
-│ └─ users.service.ts
-├─ app.controller.spec.ts
-├─ app.controller.ts
-├─ app.module.ts
-├─ app.service.ts
-└─ main.ts
+shoyly/
+│
+└── src/
+    ├── main.ts
+    ├── app.module.ts
+    │
+    ├── common/
+    │   ├── decorators/
+    │   │   └── roles.decorator.ts
+    │   ├── guards/
+    │   │   ├── jwt-auth.guard.ts
+    │   │   └── roles.guard.ts
+    │   └── enums/
+    │       └── role.enum.ts
+    │
+    ├── auth/
+    │   ├── dto/
+    │   │   └── auth.dto.ts
+    │   ├── strategies/
+    │   │   └── jwt.strategy.ts
+    │   ├── auth.controller.ts
+    │   ├── auth.service.ts
+    │   └── auth.module.ts
+    │
+    ├── users/
+    │   ├── entities/
+    │   │   └── user.entity.ts
+    │   ├── users.controller.ts
+    │   ├── users.service.ts
+    │   └── users.module.ts
+    │
+    ├── products/
+    │   ├── dto/
+    │   │   └── product.dto.ts
+    │   ├── entities/
+    │   │   └── product.entity.ts
+    │   ├── products.controller.ts
+    │   ├── products.service.ts
+    │   └── products.module.ts
+    │
+    ├── cart/
+    │   ├── dto/
+    │   │   └── cart.dto.ts
+    │   ├── entities/
+    │   │   └── cart.entity.ts
+    │   ├── cart.controller.ts
+    │   ├── cart.service.ts
+    │   └── cart.module.ts
+
 
 ```
 
